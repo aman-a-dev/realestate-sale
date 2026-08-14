@@ -1,6 +1,6 @@
 // brand
 export const BRAND = {
-  name: "Joburg Real estate",
+  name: "Mon Real estate",
   tagline: "Where Vision Meets Address",
   founded: 2015,
   location: "Ethiopia Addis Ababa",
