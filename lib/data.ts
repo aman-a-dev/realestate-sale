@@ -1,6 +1,6 @@
 // brand
 export const BRAND = {
-  name: "Melat Elemental Properties",
+  name: "Eskedan Properties",
   tagline: "Where Vision Meets Address",
   founded: 2015,
   location: "Ethiopia Addis Ababa",
