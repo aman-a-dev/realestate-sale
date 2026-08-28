@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useInView, Variants } from "framer-motion";
-import { useRef } from "react";
-import { BRAND, STATS, TEAM, VALUES, MILESTONES } from "@/lib/data";
+import React, { useRef } from "react";
 import {
   Shield,
   Zap,
@@ -17,9 +16,8 @@ import {
   Users,
   Award,
 } from "lucide-react";
+import { BRAND, STATS, TEAM, VALUES, MILESTONES } from "@/lib/data";
 import { AnimatedCounter } from "@/components/primitives/animated-counter";
-
-// ─── Properly Typed Animation Variants ───────────────────────────
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -72,8 +70,6 @@ const scaleUp: Variants = {
   },
 };
 
-// ─── Icon Mapper ─────────────────────────────────────────────────
-
 const iconMap: Record<string, React.ElementType> = {
   Shield,
   Zap,
@@ -85,8 +81,6 @@ const iconMap: Record<string, React.ElementType> = {
   Award,
 };
 
-// ─── Main Page ───────────────────────────────────────────────────
-
 export default function AboutPage() {
   return (
     <main className="relative overflow-hidden bg-background text-foreground">
@@ -95,7 +89,7 @@ export default function AboutPage() {
         <motion.div
           animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"
+          className="absolute -top-40 -right-40 h-125 w-125 rounded-full bg-primary/5 blur-3xl"
         />
         <motion.div
           animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
@@ -144,14 +138,14 @@ function HeroSection() {
             variants={fadeUp}
             className="max-w-5xl text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
           >
-            We don't just sell{" "}
+            We don&lsquo;t just sell{" "}
             <span className="relative inline-block">
               <span className="relative z-10 text-primary">homes</span>
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
-                className="absolute bottom-2 left-0 -z-0 h-3 w-full origin-left bg-primary/20 md:bottom-4 md:h-5"
+                className="absolute bottom-2 left-0 z-0 h-3 w-full origin-left bg-primary/20 md:bottom-4 md:h-5"
               />
             </span>
             .<br className="hidden md:block" /> We curate{" "}
@@ -184,7 +178,7 @@ function HeroSection() {
             Since {BRAND.founded}, {BRAND.name} has redefined the real estate
             experience by blending data-driven insights with deeply human
             intuition. We believe finding a home should feel as personal as the
-            life you'll build inside it.
+            life you&lsquo;ll build inside it.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-wrap gap-6 pt-4">
@@ -204,22 +198,6 @@ function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-muted-foreground/30 p-1"
-        >
-          <motion.div className="h-2 w-1 rounded-full bg-muted-foreground/50" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
@@ -343,9 +321,10 @@ function StorySection() {
                 className="text-lg leading-relaxed text-muted-foreground"
               >
                 Today, {BRAND.name} operates at the intersection of predictive
-                analytics and old-fashioned hospitality. We've built proprietary
-                tools that forecast neighborhood trajectories, but our greatest
-                asset remains the same: agents who listen more than they pitch.
+                analytics and old-fashioned hospitality. We&lsquo;ve built
+                proprietary tools that forecast neighborhood trajectories, but
+                our greatest asset remains the same: agents who listen more than
+                they pitch.
               </motion.p>
 
               <motion.div
@@ -353,9 +332,9 @@ function StorySection() {
                 className="rounded-2xl border-l-4 border-primary bg-muted/50 p-8"
               >
                 <blockquote className="text-xl font-medium italic text-foreground md:text-2xl">
-                  "We don't measure success by commission checks. We measure it
-                  by the families who still send us holiday cards five years
-                  after closing."
+                  "We don&lsquo;t measure success by commission checks. We
+                  measure it by the families who still send us holiday cards
+                  five years after closing."
                 </blockquote>
                 <cite className="mt-4 block text-sm font-semibold text-primary not-italic">
                   — Sarah Chen, Founder
@@ -412,7 +391,7 @@ function ValuesSection() {
                 <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/5 opacity-0 transition-opacity group-hover:opacity-100" />
 
                 <div className="relative mb-4 inline-flex rounded-xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  {Icon && <Icon className="h-6 w-6" />}
+                  {Icon && React.createElement(Icon, { className: "h-6 w-6" })}
                 </div>
                 <h3 className="relative mb-2 text-lg font-semibold">
                   {value.title}
@@ -639,8 +618,8 @@ function CTASection() {
           transition={{ delay: 0.3 }}
           className="relative mx-auto mt-6 max-w-xl text-lg text-primary-foreground/80"
         >
-          Whether you're buying your first condo, selling a family estate, or
-          investing in commercial property, {BRAND.name} is your partner at
+          Whether you&lsquo;re buying your first condo, selling a family estate,
+          or investing in commercial property, {BRAND.name} is your partner at
           every step.
         </motion.p>
         <motion.div

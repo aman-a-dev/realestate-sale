@@ -133,15 +133,16 @@ export default function PropertyCard({ property, index }: PropertyCardProps) {
         ═══════════════════════════════════════ */}
         <div className="relative h-60 overflow-hidden">
           <motion.img
-            src={property.image}
+            src={`/assets/image_${index + 1}.png` /* property.image*/}
             alt={property.title}
             className="absolute inset-0 w-full h-full object-cover scale-110"
             style={{ x: imgX, y: imgY }}
             loading="lazy"
           />
 
-          {/* Gradient Overlays */}
+          {/* Gradient Overlays 
           <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-transparent to-black/30" />
+          */}
           <div
             className="absolute inset-0 opacity-[0.04] pointer-events-none"
             style={{

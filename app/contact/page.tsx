@@ -18,7 +18,7 @@ import { Loader2, Send } from "lucide-react";
 
 interface FormData {
   name: string;
-  email: string;
+  phoneNo: number | string;
   subject: string;
   message: string;
 }
@@ -47,7 +47,7 @@ const itemVariants: Variants = {
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    email: "",
+    phoneNo: "",
     subject: "",
     message: "",
   });
@@ -64,7 +64,7 @@ export default function ContactPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.phoneNo || !formData.message) {
       toast.error("Please fill in all required fields.");
       setIsLoading(false);
       return;
@@ -82,7 +82,7 @@ export default function ContactPage() {
       if (!response.ok) throw new Error(data.error || "Something went wrong");
 
       toast.success("Message sent successfully! We'll get back to you soon.");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", phoneNo: "", subject: "", message: "" });
     } catch (error: any) {
       toast.error(error.message || "Failed to send message. Please try again.");
     } finally {
@@ -140,16 +140,16 @@ export default function ContactPage() {
                     />
                   </motion.div>
                   <motion.div variants={itemVariants} className="space-y-2">
-                    <Label htmlFor="email">
-                      Email Address <span className="text-red-500">*</span>
+                    <Label htmlFor="phoneNo">
+                      Phone Number <span className="text-red-500">*</span>
                     </Label>
                     <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
+                      id="phoneNo"
+                      name="phoneNo"
+                      type="number"
+                      value={formData.phoneNo}
                       onChange={handleChange}
-                      placeholder="john@example.com"
+                      placeholder="0910101010"
                       required
                     />
                   </motion.div>

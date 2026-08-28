@@ -15,6 +15,7 @@ import {
 import { navLinks } from "./navbar";
 import Logo from "./logo";
 import { BRAND } from "@/lib/data";
+import { useRouter } from "next/navigation";
 
 const socials = [
   { label: "Instagram", href: "https://instagram.com", icon: Camera },
@@ -33,6 +34,7 @@ const fadeUp: Variants = {
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const router = useRouter();
 
   return (
     <footer className="relative overflow-hidden">
@@ -49,8 +51,7 @@ export default function Footer() {
               <Logo />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory-50/55">
-              {BRAND.name} across Addis Ababa, Nairobi and Dubai — considered
-              listings, no noise.
+              {BRAND.name} across Addis Ababa — considered listings, no noise.
             </p>
             <div className="mt-6 flex items-center gap-2">
               {socials.map(({ label, href, icon: Icon }) => (
@@ -94,10 +95,10 @@ export default function Footer() {
                   strokeWidth={1.75}
                 />
                 <a
-                  href="mailto:hello@meridian.com"
+                  href={`hello@${BRAND.name.replace(/\s/g, "").toLowerCase()}.com`}
                   className="transition hover:text-olive-300"
                 >
-                  hello@meridian.com
+                  hello@{BRAND.name.replace(/\s/g, "").toLowerCase()}.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
@@ -106,10 +107,10 @@ export default function Footer() {
                   strokeWidth={1.75}
                 />
                 <a
-                  href="tel:+251900000000"
+                  href={`tel:${BRAND.phone}`}
                   className="transition hover:text-olive-300"
                 >
-                  +251 900 000 000
+                  {BRAND.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
@@ -117,7 +118,7 @@ export default function Footer() {
                   className="h-4 w-4 shrink-0 text-ivory-50/40"
                   strokeWidth={1.75}
                 />
-                <span>Bole, Addis Ababa</span>
+                <span>{BRAND.location}</span>
               </li>
             </ul>
           </motion.div>

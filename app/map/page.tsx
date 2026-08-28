@@ -1,4 +1,8 @@
 "use client";
+
+import { AnimatePresence, motion } from "motion/react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
 import {
   Map,
   MapFullscreenControl,
@@ -14,18 +18,6 @@ import {
   MapTooltip,
   MapZoomControl,
 } from "@/components/ui/map";
-import {
-  properties,
-  type Property,
-  type PropertyStatus,
-} from "@/lib/properties";
-import { AnimatePresence, motion } from "motion/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import {
   BathIcon,
   BedDoubleIcon,
@@ -46,8 +38,18 @@ import type {
   LeafletMouseEvent,
   Map as LeafletMap,
 } from "leaflet";
-import { BRAND } from "@/lib/data";
 import { useMap } from "react-leaflet";
+import {
+  properties,
+  type Property,
+  type PropertyStatus,
+} from "@/lib/properties";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { BRAND } from "@/lib/data";
 
 /* ────────────────────────────────────────────────────────────────────────────
 Types
@@ -91,8 +93,8 @@ Coordinates
 const INITIAL_CENTER: LatLngExpression = [9.2, 38.75];
 const CITY_CENTERS: Record<string, [number, number]> = {
   "Addis Ababa": [9.0272, 38.7469],
-  "Bahir Dar": [11.5936, 37.3908],
-  Hawassa: [7.0628, 38.477],
+  /*"Bahir Dar": [11.5936, 37.3908],
+  Hawassa: [7.0628, 38.477],*/
 };
 
 const PROPERTY_POSITIONS_BY_ID: Record<string, [number, number]> = {

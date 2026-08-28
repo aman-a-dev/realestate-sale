@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(poppins.variable, "font-sans antialiased")}>
+      <body className={cn(poppins.variable, "antialiased")}>
         <div className="flex min-h-dvh flex-col">
           <Navbar />
 

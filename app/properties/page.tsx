@@ -60,7 +60,7 @@ export default function PropertiesPage() {
       </section>
 
       {/* Results Count */}
-      <section className="max-w-7xl mx-auto px-4 mb-6">
+      <section className="max-w-7xl mx-auto px-4 mb-6 text-center">
         <p className="text-sm text-muted-foreground">
           Showing{" "}
           <span className="font-bold text-foreground">

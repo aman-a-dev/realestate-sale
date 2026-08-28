@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { BRAND } from "@/lib/data";
 
 interface PropertyPageProps {
   params: Promise<{ id: string }>;
@@ -99,7 +100,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
             <div
               className={`absolute top-6 left-6 px-4 py-2 rounded-full text-sm font-bold shadow-lg ${
-                isSale ? "bg-green-500 text-white" : "bg-yellow-500 text-black"
+                isSale ? "bg-white text-black" : "bg-black text-white"
               }`}
             >
               {status}
@@ -187,13 +188,13 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
             </div>
 
             {/* Contact Button */}
-            <Button className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
+            <Button
+              nativeButton={false}
+              render={<a href={`tell:${BRAND.phone}`} />}
+              className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20"
+            >
               Contact Agent
             </Button>
-
-            <p className="text-center text-xs text-muted-foreground mt-4">
-              Usually responds within 2 hours
-            </p>
           </div>
         </div>
       </div>

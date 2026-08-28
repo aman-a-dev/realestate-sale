@@ -1,9 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, type Variants } from "motion/react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   Home,
   LayoutGrid,
@@ -18,7 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import Logo from "./logo";
 import { BRAND } from "@/lib/data";
-import { Button } from "@/components/ui/button"; // shadcn button
+import { Button } from "@/components/ui/button";
 
 /* ─── Types ─── */
 export type NavLink = {
@@ -124,7 +123,6 @@ export default function Navbar() {
                 <Search className="h-4 w-4" strokeWidth={1.75} />
               </Button>
             </Link>
-
             <Link href="/contact" className="hidden md:inline-flex">
               <Button
                 variant="default"
@@ -134,7 +132,6 @@ export default function Navbar() {
                 <span className="hidden lg:inline">Get in touch</span>
               </Button>
             </Link>
-
             <Button
               variant="ghost"
               size="icon"
@@ -163,11 +160,11 @@ function LogoIcon() {
   return (
     <Link
       href="/"
-      className="flex items-center gap-2.5"
+      className="flex items-center justify-center gap-2.5"
       aria-label="Meridian home"
     >
       <Logo />
-      <span className="font-display text-[17px] font-semibold tracking-tight text-forest-900 md:text-[19px]">
+      <span className="font-display text-[17px] font-light tracking-tight text-forest-900 md:text-[19px]">
         {BRAND.name}
       </span>
     </Link>
@@ -175,15 +172,25 @@ function LogoIcon() {
 }
 
 /* ─── Animation Variants ─── */
+// ✅ UPDATED: Changed from circular clip-path to a smooth slide-down animation
 const overlayVariants: Variants = {
-  hidden: { clipPath: "circle(0% at calc(100% - 40px) 32px)" },
+  hidden: {
+    y: "-100%",
+  },
   visible: {
-    clipPath: "circle(150% at calc(100% - 40px) 32px)",
-    transition: { duration: 0.7, ease: [0.65, 0, 0.35, 1] },
+    y: "0%",
+    transition: {
+      type: "spring",
+      stiffness: 250,
+      damping: 30,
+    },
   },
   exit: {
-    clipPath: "circle(0% at calc(100% - 40px) 32px)",
-    transition: { duration: 0.5, ease: [0.65, 0, 0.35, 1] },
+    y: "-100%",
+    transition: {
+      duration: 0.4,
+      ease: [0.32, 0, 0.67, 0], // Smooth ease-in for closing
+    },
   },
 };
 
@@ -283,8 +290,8 @@ function MobileMenu({
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         className="flex shrink-0 flex-col gap-1 px-5 py-6 text-xs uppercase tracking-widest text-ivory-50/40 xs:flex-row xs:items-center xs:justify-between"
       >
-        <span>Addis Ababa · Nairobi · Dubai</span>
-        <span>+251 900 000 000</span>
+        <span>Addis Ababa</span>
+        <span>{BRAND.phone}</span>
       </motion.div>
     </motion.div>
   );

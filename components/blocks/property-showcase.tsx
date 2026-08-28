@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { StaggeredPopInView } from "@/components/primitives/staggered-popin-view";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,7 +72,7 @@ export default function PropertyShowcase() {
 
         // Initial: image clipped to bottom-right corner (diagonal hidden)
         gsap.set(image, {
-          clipPath: "polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%)",
+          clipPath: "polygon(100% 100%, 100% 100%, 100% 100%, 0% 0%)",
           scale: 1.15,
         });
 
@@ -154,22 +155,26 @@ export default function PropertyShowcase() {
   return (
     <section ref={sectionRef} className="relative bg-background">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-5 px-6 py-6 md:px-12 md:py-8 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
-              Features
-            </span>
-            <h2 className="text-2xl md:text-3xl font-black text-foreground tracking-tight mt-1">
-              Estate Living
-            </h2>
+      <div className="px-4 py-5 sm:px-6 sm:py-6 md:px-12 md:py-8 bg-background/80 backdrop-blur-md border-b border-border">
+        <div className="max-w-7xl mx-auto relative flex items-center justify-center">
+          {/* Centered Text */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <StaggeredPopInView
+              text="Features"
+              inView={true}
+              duration={0.08}
+              className="text-muted-foreground mary text-md sm:text-base md:text-lg font-black uppercase tracking-widest"
+            />
+
+            <StaggeredPopInView
+              text="Estate Living"
+              inView={true}
+              duration={0.08}
+              className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-foreground tracking-tight mt-1"
+            />
           </div>
-          <span className="hidden md:block text-muted-foreground text-sm font-medium">
-            {features.length} Amenities
-          </span>
         </div>
       </div>
-
       {/* Full-Screen Stacking Cards */}
       <div className="relative">
         {features.map((feature, index) => (
@@ -185,7 +190,7 @@ export default function PropertyShowcase() {
               {/* Full-Screen Image with Diagonal Clip Reveal */}
               <div className="feature-image absolute inset-0">
                 <Image
-                  src={feature.image}
+                  src={`/assets/image_${index + 1}.png` /* feature.image*/}
                   alt={feature.title}
                   fill
                   className="object-cover"

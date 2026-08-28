@@ -3,21 +3,19 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, phoneNo, subject, message } = body;
 
     // Basic server-side validation
-    if (!name || !email || !message) {
+    if (!name || !phoneNo || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },
       );
     }
 
-    // Simple email regex validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (phoneNo.length < 10) {
       return NextResponse.json(
-        { error: "Invalid email format" },
+        { error: "Invalid phone number format" },
         { status: 400 },
       );
     }
@@ -34,10 +32,10 @@ export async function POST(request: Request) {
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    console.log("Form Data Received:", { name, email, subject, message });
+    console.log("Form Data Received:", { name, phoneNo, subject, message });
 
     return NextResponse.json(
-      { message: "Message sent successfully" },
+      { message: "Message sent successfully We will back to you soon" },
       { status: 200 },
     );
   } catch (error) {

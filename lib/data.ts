@@ -1,9 +1,10 @@
 // brand
 export const BRAND = {
-  name: "Eskedan Properties",
+  name: "EthioBest RealEstate",
   tagline: "Where Vision Meets Address",
   founded: 2015,
   location: "Ethiopia Addis Ababa",
+  phone: "+251910279260",
 } as const;
 
 // About data

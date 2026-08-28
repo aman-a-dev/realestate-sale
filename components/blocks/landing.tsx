@@ -11,7 +11,6 @@ import {
   Variants,
 } from "framer-motion";
 import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
-import { melodramaFont } from "@/lib/font";
 
 /* ------------------------------------------------------------------ */
 /*  CONFIG                                                             */
@@ -357,7 +356,7 @@ const StatItem = memo(function StatItem({
       className="flex flex-col items-center gap-1 text-center sm:items-start sm:text-left"
     >
       <span
-        className={`${melodramaFont.className} text-3xl font-medium text-forest sm:text-4xl`}
+        className={`font-sanserf text-3xl font-medium text-forest sm:text-4xl`}
       >
         {display}
         {suffix}
@@ -431,7 +430,7 @@ const OverlayCard = memo(function OverlayCard({
           {overlay.label}
         </div>
         <h3
-          className={`${melodramaFont.className} font-light tracking-tight text-white/90 text-3xl sm:text-5xl md:text-6xl lg:text-7xl`}
+          className={`font-sanserf font-light tracking-tight text-white/90 text-3xl sm:text-5xl md:text-6xl lg:text-7xl`}
         >
           {overlay.heading}
         </h3>

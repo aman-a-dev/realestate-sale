@@ -356,11 +356,7 @@ Do not output HTML.
       .filter(Boolean)
       .join("\n\n");
 
-    // ✅ FIXED: Using the recommended replacement model
-    // Llama 3.3 70B is the direct replacement for the decommissioned 3.1 version.
-    // Note: Llama 3.3 70B itself is scheduled for deprecation on August 16, 2026.
-    // Plan to migrate to "openai/gpt-oss-120b" before that date.
-    const modelId = process.env.AI_MODEL || "llama-3.3-70b-versatile";
+    const modelId = "openai/gpt-oss-120b"; // Most capable free model
     const model = groq(modelId);
 
     const { text } = await generateText({
@@ -398,7 +394,7 @@ export async function GET() {
   return NextResponse.json({
     status: "online",
     service: `${BRAND.name} Support AI`,
-    provider: `Groq (${process.env.AI_MODEL || "llama-3.3-70b-versatile"})`,
+    provider: `Groq (openai/gpt-oss-120b)`,
     timestamp: new Date().toISOString(),
   });
 }
